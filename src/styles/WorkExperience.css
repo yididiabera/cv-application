@@ -1,0 +1,9 @@
+.work-experience {
+  margin-bottom: 20px;
+}
+
+.work-experience form label,
+.work-experience form input {
+  display: block;
+  margin-bottom: 8px;
+}

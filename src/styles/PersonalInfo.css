@@ -1,0 +1,9 @@
+.personal-info {
+  margin-bottom: 20px;
+}
+
+.personal-info form label,
+.personal-info form input {
+  display: block;
+  margin-bottom: 8px;
+}

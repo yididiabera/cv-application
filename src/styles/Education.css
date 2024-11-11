@@ -1,0 +1,9 @@
+.educatoin {
+  margin-button: 20px;
+}
+
+.education form label,
+.education form input {
+  display: block;
+  margin-bottom: 8px;
+}
