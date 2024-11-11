@@ -22,54 +22,68 @@ const PersonalInfo = () => {
   return (
     <div className="personal-info">
       <h2>Personal Information</h2>
-      <form action="">
-        <label htmlFor="">Name:</label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your full name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      {isEditing ? (
+        <form action="">
+          <label htmlFor="">Name:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <label htmlFor="">Email: </label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <label htmlFor="">Email: </label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <label htmlFor="">Address: </label>
-        <input
-          type="text"
-          name="address"
-          placeholder="Enter your address"
-          value={address}
-          onChange={(e) => e.target.value}
-        />
+          <label htmlFor="">Address: </label>
+          <input
+            type="text"
+            name="address"
+            placeholder="Enter your address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
 
-        <label>Phone Number:</label>
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Enter your phone number"
-          value={phone}
-          onChange={(e) => e.target.value}
-        />
+          <label>Phone Number:</label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter your phone number"
+            value={phone}
+            onChange={(e) => e.target.value}
+          />
 
-        <label>Photo:</label>
-        <input
-          type="file"
-          name="photo"
-          value={photo}
-          onChange={e.target.value}
-        />
+          <label>Photo:</label>
+          <input
+            type="file"
+            name="photo"
+            value={photo}
+            onChange={(e) => setPhoto(e.target.value)}
+          />
 
-        <button type="button"> Edit</button>
-        <button type="button">Submit</button>
-      </form>
+          <button type="button" onClick={handleSubmit}>
+            Submit
+          </button>
+        </form>
+      ) : (
+        <div>
+          <p>Name: {name}</p>
+          <p>Email: {email}</p>
+          <p>Phone Number: {phone}</p>
+          <p>Photo: {photo ? photo.name : `No photo uploaded`}</p>
+
+          <button type="button" onClick={handleEdit}>
+            Edit
+          </button>
+        </div>
+      )}
     </div>
   );
 };
