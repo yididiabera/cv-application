@@ -74,10 +74,21 @@ const PersonalInfo = () => {
         </form>
       ) : (
         <div>
-          <p>Name: {name}</p>
-          <p>Email: {email}</p>
-          <p>Phone Number: {phone}</p>
-          <p>Photo: {photo ? photo.name : `No photo uploaded`}</p>
+          <p>
+            <strong>Name: </strong> {name}
+          </p>
+          <p>
+            <strong>Email: </strong>
+            {email}
+          </p>
+          <p>
+            <strong>Phone Number: </strong>
+            {phone}
+          </p>
+          <p>
+            <strong>Photo: </strong>
+            {photo ? photo.name : `No photo uploaded`}
+          </p>
 
           <button type="button" onClick={handleEdit}>
             Edit
