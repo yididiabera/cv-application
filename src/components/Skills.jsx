@@ -1,12 +1,19 @@
 import { useState } from "react";
 import "../styles/Skills.css";
 
-const Skills = () => {
-  const [skills, setSkills] = useState("");
+const Skills = ({ data, setData }) => {
+  //   const [skills, setSkills] = useState("");
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
   const [isEditing, setIsEditing] = useState(true);
 
   const handleEdit = () => setIsEditing(true);
-  const handleSubmit = () => setIsEditing(false);
+  const handleSubmit = () => {
+    setIsEditing(false);
+    onSubmit({ skills });
+  };
 
   return (
     <div className="skills">
@@ -16,10 +23,10 @@ const Skills = () => {
           <label htmlFor="">Languages/Technologies</label>
           <input
             type="text"
-            name="language"
+            name="skills"
             placeholder="Enter your skills"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
+            value={data.skills}
+            onChange={handleChange}
           />
 
           <button type="button" onClick={handleSubmit}>

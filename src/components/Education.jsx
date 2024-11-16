@@ -1,14 +1,22 @@
 import { useState } from "react";
 import "../styles/Education.css";
 
-const Education = () => {
-  const [school, setSchool] = useState("");
-  const [degree, setDegree] = useState("");
+const Education = ({ data, setData }) => {
+  //   const [school, setSchool] = useState("");
+  //   const [degree, setDegree] = useState("");
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
   const [isEditing, setIsEditing] = useState(true);
 
   const handleEdit = () => setIsEditing(true);
-  const handleSubmit = () => setIsEditing(false);
+  const handleSubmit = () => {
+    setIsEditing(false);
+    onSubmit({ school, degree });
+  };
 
   return (
     <div className="education">
@@ -21,8 +29,8 @@ const Education = () => {
             type="text"
             name="school"
             placeholder="Enter the name of the School"
-            value={school}
-            onChange={(e) => setSchool(e.target.value)}
+            value={data.school}
+            onChange={handleChange}
           />
 
           <label htmlFor="">Degree/Certification</label>
@@ -30,8 +38,8 @@ const Education = () => {
             type="text"
             name="degree"
             placeholder="Enter the degree or certification"
-            value={degree}
-            onChange={(e) => setDegree(e.target.value)}
+            value={data.degree}
+            onChange={handleChange}
           />
 
           <button type="button" onClick={handleSubmit}>

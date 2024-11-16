@@ -1,16 +1,23 @@
 import { useState } from "react";
 import "../styles/WorkExperience.css";
 
-const WorkExperience = () => {
-  const [title, setTitle] = useState("");
-  const [companyName, setCompanyName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [isEditing, setIsEditing] = useState(true);
+const WorkExperience = ({ data, setData }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
+    setData((prevData) => ({ ...prevData, [name]: value }));
+  };
+  //   const [title, setTitle] = useState("");
+  //   const [companyName, setCompanyName] = useState("");
+  //   const [startDate, setStartDate] = useState("");
+  //   const [endDate, setEndDate] = useState("");
+  //   const [description, setDescription] = useState("");
+  const [isEditing, setIsEditing] = useState(true);
   const handleEdit = () => setIsEditing(true);
-  const handleSubmit = () => setIsEditing(false);
+  const handleSubmit = () => {
+    setIsEditing(false);
+    onSubmit({ title, companyName, startDate, endDate, description });
+  };
 
   return (
     <div className="work-experience">
@@ -22,8 +29,8 @@ const WorkExperience = () => {
             type="text"
             name="title"
             placeholder="Enter your position title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={data.title}
+            onChange={handleChange}
           />
 
           <label htmlFor="">Company Name: </label>
@@ -31,31 +38,31 @@ const WorkExperience = () => {
             type="text"
             name="companyName"
             placeholder="Enter the company name"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            value={data.companyName}
+            onChange={handleChange}
           />
 
           <label htmlFor="">Start Date: </label>
           <input
             type="date"
             name="startDate"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            value={data.startDate}
+            onChange={handleChange}
           />
 
           <label htmlFor="">End Date:</label>
           <input
             type="date"
             name="endDate"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            value={data.endDate}
+            onChange={handleChange}
           />
 
           <label htmlFor="">Description</label>
           <textarea
             name="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={data.description}
+            onChange={handleChange}
           >
             Describe your role and responsibilities...
           </textarea>

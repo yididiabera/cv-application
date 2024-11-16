@@ -1,14 +1,30 @@
 import { useState } from "react";
 import "../styles/PersonalInfo.css";
 
-const PersonalInfo = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [photo, setPhoto] = useState(null);
-
+const PersonalInfo = ({ data, setData }) => {
   const [isEditing, setIsEditing] = useState(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsEditing(false);
+    onSubmit({ name, email, address, phone, photo });
+  };
+
+  const handleEdit = () => setIsEditing(true);
+
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+
+    setData((prevData) => ({
+      ...prevData,
+      [name]: files ? URL.createObjectURL(files[0]) : value,
+    }));
+  };
+  //   const [name, setName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [address, setAddress] = useState("");
+  //   const [phone, setPhone] = useState("");
+  //   const [photo, setPhoto] = useState(null);
 
   //   const handleNameChange = (e) => setName(e.target.value);
   //   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -16,62 +32,62 @@ const PersonalInfo = () => {
   //   const handlePhoneChange = (e) => setPhone(e.target.value);
   //   const handlePhotoChange = (e) => setPhoto(e.target.value);
 
-  const handleSubmit = () => setIsEditing(false);
-  const handleEdit = () => setIsEditing(true);
-
   return (
     <div className="personal-info">
       <h2>Personal Information</h2>
       {isEditing ? (
-        <form action="">
-          <label htmlFor="">Name:</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter your full name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <div className="form-container">
+          <div className="details-container">
+            <form onSubmit={handleSubmit}>
+              <label htmlFor="">Name:</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                value={data.name}
+                onChange={handleChange}
+              />
 
-          <label htmlFor="">Email: </label>
-          <input
-            type="text"
-            name="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+              <label htmlFor="">Email: </label>
+              <input
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+                value={data.email}
+                onChange={handleChange}
+              />
 
-          <label htmlFor="">Address: </label>
-          <input
-            type="text"
-            name="address"
-            placeholder="Enter your address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+              <label htmlFor="">Address: </label>
+              <input
+                type="text"
+                name="address"
+                placeholder="Enter your address"
+                value={data.address}
+                onChange={handleChange}
+              />
 
-          <label>Phone Number:</label>
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Enter your phone number"
-            value={phone}
-            onChange={(e) => e.target.value}
-          />
+              <label>Phone Number:</label>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Enter your phone number"
+                value={data.phone}
+                onChange={handleChange}
+              />
+              <label htmlFor="photo">Photo: </label>
+              <input
+                type="file"
+                name="photo"
+                accept="image/*"
+                onChange={handleChange}
+              />
 
-          <label>Photo:</label>
-          <input
-            type="file"
-            name="photo"
-            value={photo}
-            onChange={(e) => setPhoto(e.target.value)}
-          />
-
-          <button type="button" onClick={handleSubmit}>
-            Submit
-          </button>
-        </form>
+              <button type="button" onClick={handleSubmit}>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
       ) : (
         <div>
           <p>
@@ -87,7 +103,11 @@ const PersonalInfo = () => {
           </p>
           <p>
             <strong>Photo: </strong>
-            {photo ? photo.name : `No photo uploaded`}
+            {data.photo ? (
+              <img src="data.photo" alt="preview" className="photo-preview" />
+            ) : (
+              <div className="photo-placeholder"> No Photo</div>
+            )}
           </p>
 
           <button type="button" onClick={handleEdit}>
