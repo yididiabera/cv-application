@@ -1,5 +1,8 @@
 .skills {
-  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 4px;
 }
 
 .skills form label {

@@ -1,9 +1,66 @@
 .personal-info {
-  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
 }
 
-.personal-info form label,
-.personal-info form input {
-  display: block;
-  margin-bottom: 8px;
+.personal-info h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container {
+  display: flex;
+  gap: 20px;
+}
+
+.details-container {
+  flex: 2;
+}
+
+.details-container form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.details-container label {
+  font-weight: bold;
+}
+
+.details-container input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+button {
+  padding: 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.submitted-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.submitted-details p {
+  margin: 5px 0;
+}
+
+.submitted-details .photo-preview {
+  margin-bottom: 10px;
 }
